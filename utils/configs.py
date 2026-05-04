@@ -27,3 +27,30 @@ class TrainingConfig:
     def load(filepath: str) -> 'TrainingConfig':
         with open(filepath, 'rb') as f:
             return pickle.load(f)
+
+
+@dataclass
+class KFDTrainingConfig:
+    batch_size: int
+    max_cpu_count: int
+    epochs: int
+    learning_rate: float
+    weight_decay: float
+    loss_fn: callable
+    eval_fn: callable
+    optimizer: str
+    downsample_factor: int = 1
+    input_size: tuple = (640, 480)
+
+    @property
+    def num_workers(self) -> int:
+        return min(self.max_cpu_count, self.batch_size)
+
+    def save(self, filepath: str):
+        with open(filepath, 'wb') as f:
+            pickle.dump(self, f)
+
+    @staticmethod
+    def load(filepath: str) -> 'KFDTrainingConfig':
+        with open(filepath, 'rb') as f:
+            return pickle.load(f)
