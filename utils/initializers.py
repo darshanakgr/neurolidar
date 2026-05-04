@@ -2,18 +2,8 @@ import pandas as pd
 
 from torch import nn, optim
 from torch.utils.data import Dataset, DataLoader
-from utils.datasets import VTWDataset, DepthExtDataset, KeyFrameDataset
+from utils.datasets import DepthExtDataset, KeyFrameDataset
 from utils.configs import TrainingConfig, KFDTrainingConfig
-
-
-def init_datasets(hdf5_file: str, metadata_file: str, clip: bool, downsample: float = 0.0) -> tuple:
-    df = pd.read_csv(metadata_file)
-    train_df = df[df.split == "train"]
-    test_df = df[df.split == "test"]
-    train_dataset = VTWDataset(hdf5_file, train_df, clip, downsample)
-    test_dataset = VTWDataset(hdf5_file, test_df, clip, downsample)
-
-    return train_dataset, test_dataset
 
 
 def init_depthext_datasets(hdf5_file: str, metadata_file: str, clip: bool, downsample: float = 0.0) -> tuple:

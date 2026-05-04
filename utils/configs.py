@@ -27,8 +27,8 @@ class TrainingConfig:
     def load(filepath: str) -> 'TrainingConfig':
         with open(filepath, 'rb') as f:
             return pickle.load(f)
-
-
+        
+        
 @dataclass
 class KFDTrainingConfig:
     batch_size: int
@@ -51,6 +51,6 @@ class KFDTrainingConfig:
             pickle.dump(self, f)
 
     @staticmethod
-    def load(filepath: str) -> 'KFDTrainingConfig':
+    def load(filepath: str) -> 'TrainingConfig':
         with open(filepath, 'rb') as f:
             return pickle.load(f)
