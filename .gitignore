@@ -1,5 +1,4 @@
 .vscode
-checkpoints
 data/extrapolation/variable_interval_voxel_grids_v1.h5
 data/slicing/slicing_dataset_v1.h5
 results
